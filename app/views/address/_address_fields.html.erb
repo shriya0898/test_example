@@ -1,0 +1,22 @@
+<div class="nested-fields">
+    <%= f.hidden_field :_destroy %>
+    <div class="field">
+    <%= f.label :Address_line %> 
+    <%= f.text_field :address_line%><br />
+
+    <%= f.label :City %>
+    <%= f.text_field :city%><br />
+
+    <%= f.label :State %>
+    <%= f.text_field :state%><br />
+
+    <%= f.label :Country %>
+    <%= f.date_field  :country%><br />
+
+    <%= f.label :Pin_code %>
+    <%= f.telephone_field  :pincode%><br />
+  </div>
+    <div>
+        <%= link_to "Remove", '#', class: "remove_fields" %>
+    </div>
+</div>
