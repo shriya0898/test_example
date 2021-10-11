@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :posts
   has_one :address
   has_one_attached :avatar, :dependent => :destroy
-  # validates :avatar, attached: true, content_type: [:png, :jpg, :jpeg]
+  validates :avatar, attached: true, content_type: [:png, :jpg, :jpeg]
   accepts_nested_attributes_for :address, allow_destroy: true, reject_if: :all_blank
 
   def self.create_from_provider_data(provider_data)
