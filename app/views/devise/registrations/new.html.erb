@@ -24,7 +24,30 @@
     <%= f.label :Contact_no %>
     <%= f.telephone_field  :contact_no%><br />
   </div>
+
+  <%= f.fields_for :addresses do |address_form| %>
+
+    <div class="field">
+      <%= address_form.label :address_line %>
+      <%= address_form.text_field :address_line%><br />
+
+      <%= address_form.label :city %>
+      <%= address_form.text_field :city %><br />
+
+      <%= address_form.label :state %>
+      <%= address_form.text_field :state  %><br />
+
+      <%= address_form.label :country %>
+      <%= address_form.text_field :country %><br />
+
+      <%= address_form.label :pincode %>
+      <%= address_form.text_field :pincode%><br />
+    </div>
+
+    <%= address_form.hidden_field :_destroy, :value => params[:_destroy] %>
+  <% end %>
   <div class="field">
+    <%= f.label :profile_photo%>
     <%= f.file_field :avatar, placeholder: 'Upload picture',direct_upload: true %>
   </div>
   <div class="field">
@@ -39,7 +62,6 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

@@ -12,8 +12,8 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    debugger
-    @post =  current_user.post.new(user_id: current_user.id)
+    @post =  current_user.posts.new(user_id: current_user.id)
+   
   end
 
   # GET /posts/1/edit

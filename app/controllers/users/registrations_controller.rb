@@ -7,12 +7,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     super
+   @address = Address.new()
+  
   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    # build_resource(configure_sign_up_params)
+    # @address = Address.new(configure_sign_up_params)
+    # # @address.user_id = resource.id
+    # @address.save
+  end
 
   # GET /resource/edit
   # def edit
@@ -38,21 +44,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:address_line, :city, :state, :country, :pincode])
-  end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:address_line, :city, :state, :country, :pincode])
-  end
+  
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    super(resource)
+  end
+
+  def after_update_path_for(resource)
+    case resource
+    when :user, User
+      resource.teacher? ? another_path : root_path
+    else
+      super
+    end
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

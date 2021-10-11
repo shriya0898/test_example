@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount Ckeditor::Engine => '/ckeditor'
+  # mount Ckeditor::Engine => '/ckeditor'
   devise_for :users, controllers:  { registrations: 'users/registrations' }
   root "posts#index"
   resources :posts
