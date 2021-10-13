@@ -70,6 +70,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private 
 
   def address_params
-    params.require(:address).permit( addresses_attributes: [:address_line, :city, :state, :country, :pincode])
+    params.require(:address, :users).permit( addresses_attributes: [:address_line, :city, :state, :country, :pincode, :first_name, :last_name, :age, :contact_no, :dob, :avatar])
   end
 end
